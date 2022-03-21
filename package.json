@@ -1,0 +1,35 @@
+{
+  "name": "progressive-web-apps-2122",
+  "version": "1.0.0",
+  "description": "![pwa](https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "start": "npx nodemon .",
+    "test": "npx nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jody29/progressive-web-apps-2122.git"
+  },
+  "author": "Jody Lorist",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jody29/progressive-web-apps-2122/issues"
+  },
+  "homepage": "https://github.com/jody29/progressive-web-apps-2122#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.0"
+  }
+}
