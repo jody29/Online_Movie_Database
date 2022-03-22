@@ -1,0 +1,16 @@
+html {
+    background-color: rgb(20, 20, 20);
+}
+
+body {
+    width: 100vw;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+main {
+    width: 100%;
+    max-width: 1200px;
+}

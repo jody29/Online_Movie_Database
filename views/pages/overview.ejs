@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('../partials/head') %>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/css/overview.css" type="text/css">
+</head>
+<body>
+    <main>
+    <section>
+        <% results.forEach(tab => { %>
+            <h2><%= tab.tab %></h2>
+            <ul>
+                <% for(let i; i < tab.movies.length; i++) { %>
+                    <a href="/movies/<%= tab.movies[i].id %>">
+                        <img src="https://image.tmdb.org/t/p/w500/<%= tab.movies[i].poster_path %>" alt="Movie poster of <%= tab.movies[i].original_title %>">
+                    </a>
+                    <% } %>
+            </ul>
+
+            <% }) %>
+    </section>
+</main>
+</body>
+</html>
