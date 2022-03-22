@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="/css/overview.css" type="text/css">
 </head>
 <body>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
     <main>
     <section>
         <% results.forEach(tab => { %>
             <h2><%= tab.tab %></h2>
             <ul>
-                <% for(let i; i < tab.movies.length; i++) { %>
-                    <a href="/movies/<%= tab.movies[i].id %>">
-                        <img src="https://image.tmdb.org/t/p/w500/<%= tab.movies[i].poster_path %>" alt="Movie poster of <%= tab.movies[i].original_title %>">
+                <% tab.movies.forEach(movie => { %>
+
+                    <a href="/movies/<%= movie.id %>">
+                        <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" alt="Movie poster of <%= movie.original_title %>">
                     </a>
-                    <% } %>
+
+                    <% }) %>
             </ul>
 
             <% }) %>

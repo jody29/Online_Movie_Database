@@ -1,6 +1,13 @@
 h2 {
     color: white;
     margin-left: .2em;
+    margin-bottom: 0;
+    margin-top: 1em;
+}
+
+section {
+    width: 93%;
+    max-width: 1400px;
 }
 
 ul {
@@ -9,6 +16,7 @@ ul {
     overflow-x: scroll;
     padding: 0;
     width: 100%;
+    margin-top: 1em;
 }
 
 ul a {
@@ -21,8 +29,8 @@ ul a {
 }
 
 ul a img {
-    width: 10em;
-    aspect-ratio: 9 / 16;
+    width: 11em;
+    aspect-ratio: 4 / 6;
     object-fit: cover;
     margin-bottom: .5em;
 }

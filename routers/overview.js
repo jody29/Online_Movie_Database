@@ -4,24 +4,25 @@ const router = express.Router()
 const fetch = require('node-fetch')
 require('dotenv').config()
 
-router.get('/overview', async (req, res) => {
+router.get('/', (req, res) => {
 
     Promise.all([
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1`)
         .then(response => response.json()),
-        fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1`)
         .then(response => response.json()),
-        fetch(`https://api.themoviedb.org/3/movie/latest?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1`)
+        .then(response => response.json()),
+        fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1`)
         .then(response => response.json())
     ])
-    .then(([popular, top_rated, latest]) => {
+    .then(([popular, top_rated, upcoming, now_playing]) => {
         const results = [
-            {tab: 'popular', movies: popular.results},
-            {tab: 'top rated', movies: top_rated.results},
-            {tab: 'latest', movies: latest.results},
+            {tab: 'Popular', movies: popular.results},
+            {tab: 'Top rated', movies: top_rated.results},
+            {tab: 'Upcoming', movies: upcoming.results},
+            {tab: 'Now playing', movies: now_playing.results},
         ]
-
-        console.log(results[0].movies.length)
 
         res.render('pages/overview', {
             title: 'overview',
