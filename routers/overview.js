@@ -4,8 +4,11 @@ const fetch = require('node-fetch')
 require('dotenv').config()
 
 router.get('/', (req, res) => {
-    const selPop = req.query ? req.query.popular : 'all_time'
-    const selRat = req.query ? req.query.top_rated : 'all_time'
+    req.session.popular = req.query.popular ? req.query.popular : req.session.popular
+    req.session.top_rated = req.query.top_rated ? req.query.top_rated : req.session.top_rated
+
+    const selPop = req.session.popular
+    const selRat = req.session.top_rated
 
     Promise.all([
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1&year=${selPop}`)
@@ -19,8 +22,8 @@ router.get('/', (req, res) => {
     ])
     .then(([popular, top_rated, upcoming, now_playing]) => {
         const results = [
-            {tab: 'Popular', name:'popular', movies: popular.results, years: ['all_time', '1994', '1995', '1996'], selected: selPop},
-            {tab: 'Top rated', name: 'top_rated', movies: top_rated.results, years: ['all_time', '1994', '1995', '1996'], selected: selRat},
+            {tab: 'Popular', name:'popular', movies: popular.results, years: ['now', '1994', '1995', '1996'], selected: selPop},
+            {tab: 'Top rated', name: 'top_rated', movies: top_rated.results, years: ['now', '1994', '1995', '1996'], selected: selRat},
             {tab: 'Upcoming', movies: upcoming.results},
             {tab: 'Now playing', movies: now_playing.results},
         ]
@@ -28,6 +31,19 @@ router.get('/', (req, res) => {
         res.render('pages/overview', {
             title: 'overview',
             results
+        })
+    })
+})
+
+router.get('/movies/:id', (req, res) => {
+    Promise.all([
+        fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US`)
+        .then(response => response.json())
+    ])
+    .then(([details]) => {
+        res.render('pages/detail.ejs', {
+            title: details.original_title,
+            details
         })
     })
 })

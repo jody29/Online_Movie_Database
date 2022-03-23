@@ -3,9 +3,16 @@
 <head>
     <%- include('../partials/head') %>
     <title><%= title %></title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/css/details.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-    <h1><%= data.product_name_fr %></h1>
+    <header>
+    <img src="https://image.tmdb.org/t/p/w500/<%= details.backdrop_path %>" alt="">
+    <h1><%= details.original_title %></h1>
+    </header>
+    <main>
+        <p><%= details.overview %></p>
+    </main>
 </body>
 </html>
