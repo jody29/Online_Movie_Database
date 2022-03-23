@@ -1,15 +1,16 @@
-const { response } = require('express')
 const express = require('express')
 const router = express.Router()
 const fetch = require('node-fetch')
 require('dotenv').config()
 
 router.get('/', (req, res) => {
+    const selPop = req.query ? req.query.popular : 'all_time'
+    const selRat = req.query ? req.query.top_rated : 'all_time'
 
     Promise.all([
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1&year=${selPop}`)
         .then(response => response.json()),
-        fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1&year=${selRat}`)
         .then(response => response.json()),
         fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.MOVIEDB_TOKEN}&language=nl-NL&page=1`)
         .then(response => response.json()),
@@ -18,8 +19,8 @@ router.get('/', (req, res) => {
     ])
     .then(([popular, top_rated, upcoming, now_playing]) => {
         const results = [
-            {tab: 'Popular', movies: popular.results},
-            {tab: 'Top rated', movies: top_rated.results},
+            {tab: 'Popular', name:'popular', movies: popular.results, years: ['all_time', '1994', '1995', '1996'], selected: selPop},
+            {tab: 'Top rated', name: 'top_rated', movies: top_rated.results, years: ['all_time', '1994', '1995', '1996'], selected: selRat},
             {tab: 'Upcoming', movies: upcoming.results},
             {tab: 'Now playing', movies: now_playing.results},
         ]
@@ -30,28 +31,5 @@ router.get('/', (req, res) => {
         })
     })
 })
-
-// router.get('/overview', async (req, res) => {
-//     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US&page=1`
-//     const options = {
-//         'method': 'GET'
-//     }
-
-//     const response = await fetch(url, options)
-//     .then(result => result.json() )
-//     .catch(e => {
-//         console.error({
-//             'message': 'error',
-//             error: e
-//         })
-//     })
-
-//     const movieData = response.results
-
-//     res.render('pages/overview', {
-//         title: 'overview',
-//         movieData
-//     })
-// })
 
 module.exports = router

@@ -13,7 +13,21 @@
     <main>
     <section>
         <% results.forEach(tab => { %>
+            <span>
             <h2><%= tab.tab %></h2>
+            <% if(tab.years) { %>
+            <form action="/">
+                <select name="<%= tab.name %>" id="year" onchange="this.form.submit()">
+                    <% tab.years.forEach(year => { %>
+                        <% if(tab.selected === year) { %>
+                        <option value="<%= year %>" selected="<%= tab.selected %>"><%= year %></option>
+                        <% } else { %>
+                        <option value="<%= year %>"><%= year %></option>  
+                        <% }}) %>
+                </select>
+            </form>
+            <% } else { } %>
+            </span>
             <ul>
                 <% tab.movies.forEach(movie => { %>
 

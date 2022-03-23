@@ -17,7 +17,7 @@ const overviewRoute = require('./routers/overview')
 // use routers
 app.use('/', overviewRoute)
 
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(404).render('pages/404', {
         title: 'ERROR404',
     })
