@@ -34,14 +34,6 @@ router.get('/', async (req, res) => {
             results
         })
     })
-
-    if (req.url === `/?popular=${req.session.popular}` && req.query.top_rated) {
-        req.url + '?top_rated=' + req.session.top_rated
-    } else if (req.url.includes('top_rated') && req.query.popular && !req.url.includes('popular') ) {
-        req.url = `${req.url}&top_rated=${req.query.popular}`
-    }
-
-    console.log(req.url + '?top_rated=' + req.session.top_rated )
 })
 
 router.get('/movies/:id', (req, res) => {

@@ -13,6 +13,12 @@
     </header>
     <main>
         <p><%= details.overview %></p>
+        <ul>
+        <% details.genres.forEach(genre => { %>
+            <li><%= genre.name %></li>
+
+        <% }) %>
+    </ul>
     </main>
 </body>
 </html>

@@ -27,20 +27,27 @@
                 </select>
                 <button type="submit"></button>
             </form>
-            <% } else { } %>
+            <% } %>
             </span>
             <ul>
                 <% tab.movies.forEach(movie => { %>
-
                     <a href="/movies/<%= movie.id %>">
                         <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" alt="Movie poster of <%= movie.original_title %>">
                     </a>
-
                     <% }) %>
             </ul>
-
             <% }) %>
     </section>
 </main>
 </body>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    return registration.update()
+                })
+        })
+    }
+</script>
 </html>
