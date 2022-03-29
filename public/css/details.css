@@ -33,13 +33,33 @@ main {
     align-items: flex-start!important;
 }
 
-p {
+main section:first-of-type {
+    display: flex;
+
+}
+
+main section p:first-of-type {
     color: white;
     padding-left: 2em;
     padding-right: 2em;
+    width: 50%;
+}
+
+main section span {
+    margin-left: auto;
+    margin-right: 2em;
+}
+
+strong {
+    color: white;
 }
 
 ul {
     color: white;
     list-style: none;
+    padding: 0;
 }
+
+
+
+

@@ -12,13 +12,17 @@
     <h1><%= details.original_title %></h1>
     </header>
     <main>
+        <section>
         <p><%= details.overview %></p>
+        <span>
+        <strong>Genres:</strong>
         <ul>
-        <% details.genres.forEach(genre => { %>
-            <li><%= genre.name %></li>
-
-        <% }) %>
-    </ul>
+            <% details.genres.forEach(genre => { %>
+                <li><%= genre.name %></li>
+            <% }) %>
+        </ul>
+        </span>
+        </section>
     </main>
 </body>
 </html>
