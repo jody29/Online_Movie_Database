@@ -42,7 +42,7 @@ router.get('/movies/:id', (req, res) => {
         .then(response => response.json())
     ])
     .then(([details]) => {
-        res.render('pages/detail.ejs', {
+        res.render('pages/detail', {
             title: details.original_title,
             details
         })
