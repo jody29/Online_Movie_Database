@@ -12,16 +12,28 @@
     </header>
     <main>
         <section>
-        <p><%= details.overview %></p>
-        <span>
-        <strong>Genres:</strong>
-        <ul>
-            <% details.genres.forEach(genre => { %>
-                <li><%= genre.name %></li>
-            <% }) %>
-        </ul>
-        </span>
+            <div>
+                <p><%= details.overview %></p>
+                <span>
+                <strong>Genres:</strong>
+                <ul>
+                    <% details.genres.forEach(genre => { %>
+                        <li><%= genre.name %></li>
+                    <% }) %>
+                </ul>
+                </span>
+            </div>
+            <h2>You may also like:</h2>
+            <ul class="similar">
+                <% same.forEach(movie => { %>
+                    <a href="/movies/<%= movie.id %>">
+                        <img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" alt="Movie poster of <%= movie.original_title %>">
+                    </a>
+                <% }) %>
+            </ul>
+        
         </section>
+        
     </main>
 </body>
 </html>

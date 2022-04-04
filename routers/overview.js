@@ -39,12 +39,17 @@ router.get('/', async (req, res) => {
 router.get('/movies/:id', (req, res) => {
     Promise.all([
         fetch(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US`)
+        .then(response => response.json()),
+        fetch(`https://api.themoviedb.org/3/movie/${req.params.id}/similar?api_key=${process.env.MOVIEDB_TOKEN}&language=en-US`)
         .then(response => response.json())
     ])
-    .then(([details]) => {
+    .then(([details, similar]) => {
+        const same = similar.results
+
         res.render('pages/detail', {
             title: details.original_title,
-            details
+            details,
+            same
         })
     })
 })

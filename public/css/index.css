@@ -8,6 +8,11 @@ body {
     margin: 0;
 }
 
+main section {
+    width: 93%;
+    max-width: 1400px;
+}
+
 main {
     width: 100%;
     display: flex;
