@@ -22,6 +22,11 @@ app.use(
     })
 )
 
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'max-age=' + 365 * 24 * 60 * 60)
+    next()
+})
+
 // import routers
 const overviewRoute = require('./routers/overview')
 

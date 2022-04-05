@@ -28,12 +28,16 @@ section span form {
     margin-left: auto;
 }
 
+ul li {
+    width: 20em;
+}
+
 ul a {
     display: flex;
     color: white;
     text-decoration: none;
     font-weight: bold;
-    width: 20em;
+    width: 100%;
     margin-right: .5em;
 }
 
