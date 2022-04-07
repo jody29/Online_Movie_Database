@@ -4,7 +4,7 @@ const path = require('path')
 const session = require('express-session')
 require('dotenv').config()
 
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 
 // set templating engine
 app.set('view engine', 'ejs')
