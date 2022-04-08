@@ -5,7 +5,12 @@ Online Movie Database is the place to keep you up to date with movies. It showca
 
 [Live demo here](https://onlinemoviedata.herokuapp.com/)
 
-<!-- Maybe a table of contents here? 📚 -->
+## 📔 Table of contents
+* [Install]()
+* [Features]()
+* [Activity Diagram]()
+* [API Documentation]()
+* [License]()
 
 ## ⚙️ Install
 ### clone on your device
@@ -42,11 +47,26 @@ Application will run on PORT 8000. See the application on http://localhost:8000
 
 <!-- ...you should implement an explanation of client- server rendering choices 🍽 -->
 
-<!-- ...and an activity diagram including the Service Worker 📈 -->
+## 📈 Activity Diagram
+### Server side
+![activity_diagram_Tekengebied 1](https://user-images.githubusercontent.com/66092262/162439124-e50cef9f-0370-4aa2-85cf-3698b7e54084.png)
+### Service worker
+![activitydiagram_sw](https://user-images.githubusercontent.com/66092262/162444883-80566d61-e420-47ef-a6cd-e20dd0d6cfa4.png)
 
-<!-- This would be a good place for a list of enhancements to optimize the critical render path implemented your app  -->
+## 🔧 Optimizations
+### Caching headers set  
+```js
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'max-age=' + 365 * 24 * 60 * 60)
+    next()
+})
+```
+### Made images smaller
+#### before
+`<img src="https://image.tmdb.org/t/p/w500/<%= movie.poster_path %>" alt="Movie poster of <%= movie.original_title %>">`
+#### after
+`<img src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>" alt="Movie poster of <%= movie.original_title %>">`
 
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
 
 ## 📥 API Documentation
 For this project I used The Movie Database APIE. The documentation for this API can be found here:
