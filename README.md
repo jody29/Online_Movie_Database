@@ -67,6 +67,9 @@ app.use((req, res, next) => {
 #### after
 `<img src="https://image.tmdb.org/t/p/w200/<%= movie.poster_path %>" alt="Movie poster of <%= movie.original_title %>">`
 
+### Lighthouse audit test
+<img width="544" alt="Schermafbeelding 2022-04-05 om 13 16 05" src="https://user-images.githubusercontent.com/66092262/162639908-47f55776-1b90-46d1-8f00-20482f4331db.png">
+
 
 ## 📥 API Documentation
 For this project I used The Movie Database APIE. The documentation for this API can be found here:
